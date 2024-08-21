@@ -1,0 +1,72 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap');
+
+* {
+    font-family: "Roboto Condensed", sans-serif;
+    font-weight: 100 900;
+    font-style: normal;
+}
+
+:root {
+    --color-1: #4a4394;
+    --color-2: #322e5e;
+    --color-3: #bd123d;
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+    -moz-appearance: textfield;
+}
+
+button,
+.btn {
+    transition: transform 0.3s ease-in-out, background-color 0.3s ease-in-out;
+}
+
+button:hover,
+.btn:hover {
+    transform: scale(1.04);
+}
+
+.custom-btn {
+    background-color: var(--color-1);
+    border-color: var(--color-1);
+    color: white;
+}
+
+.custom-btn:hover {
+    background-color: var(--color-2);
+    border-color: var(--color-2);
+    color: white;
+}
+
+.custom-bg {
+    background-color: var(--color-1);
+}
+
+.custom-bg-text {
+    color: var(--color-1);
+}
+
+.navbar-toggler {
+    border: none;
+}
+
+.navbar-toggler:focus {
+    box-shadow: none;
+}
+
+.nav-link:hover {
+    color: var(--color-1);
+    font-weight: 600;
+}
+
+.logout:hover {
+    color: var(--color-3);
+}
