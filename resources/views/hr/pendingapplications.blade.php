@@ -41,12 +41,28 @@
                 </div>
             </div>
         </nav>
-        <div class="container d-flex px-4 px-md-0 px-lg-0 my-5 min-vh-100">
+        <div class="container d-flex justify-content-center px-4 px-md-0 px-lg-0 my-5 min-vh-100">
             <div class="card shadow">
                 <div class="custom-bg rounded-top">
                     <div class="d-flex justify-content-between m-0 p-3 text-white">
                         <h5 class="m-0 d-flex align-items-center">Pending Applications</h5>
                         <a href="{{route('hr.dashboard')}}" class="btn btn-sm btn-light">Back</a>
+                    </div>
+                </div>
+                <div class="row p-3">
+                    <div class="col-12 d-flex justify-content-center">
+                        @if(Session::has('yes_msg'))
+                        <div class="alert alert-success shadow mb-4 w-100">{{Session::get('yes_msg')}}</div>
+                        @endif
+                        @if(Session::has('yes_error'))
+                        <div class="alert alert-danger shadow mb-4 w-100">{{Session::get('yes_error')}}</div>
+                        @endif
+                        @if(Session::has('no_msg'))
+                        <div class="alert alert-warning shadow mb-4 w-100">{{Session::get('no_msg')}}</div>
+                        @endif
+                        @if(Session::has('no_error'))
+                        <div class="alert alert-danger shadow mb-4 w-100">{{Session::get('no_error')}}</div>
+                        @endif
                     </div>
                 </div>
                 <div class="card-body">
@@ -96,8 +112,17 @@
                                     <td>{{ $pendingapplication->reason }}</td>
                                     <td>
                                         <div class="d-flex">
-                                            <button type="submit" class="btn btn-sm custom-btn me-1">Approve</button>
-                                            <button type="submit" class="btn btn-sm btn-danger">Reject</button>
+                                            <form action="{{route('hr.accept', $pendingapplication->id)}}"
+                                                method="post">
+                                                @csrf
+                                                <button type="submit"
+                                                    class="btn btn-sm custom-btn me-1">Approve</button>
+                                            </form>
+                                            <form action="{{route('hr.reject', $pendingapplication->id)}}"
+                                                method="post">
+                                                @csrf
+                                                <button type="submit" class="btn btn-sm btn-danger">Reject</button>
+                                            </form>
                                         </div>
                                     </td>
                                 </tr>

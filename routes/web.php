@@ -43,5 +43,7 @@ Route::group(['prefix' => 'hr'], function(){
         Route::get('/totalemployees', [HRDashboardController::class, 'displayEmployees'])->name('hr.totalemployees');
         Route::get('/totalapplications', [HRDashboardController::class, 'displayTotalApplications'])->name('hr.totalapplications');
         Route::get('/pendingapplications', [HRDashboardController::class, 'displayPendingApplications'])->name('hr.pendingapplications');
+        Route::post('/accept/{userid}', [HRDashboardController::class, 'accept'])->name('hr.accept');
+        Route::post('/reject/{userid}', [HRDashboardController::class, 'reject'])->name('hr.reject');
     }); 
 });

@@ -64,7 +64,7 @@
                     <div class="col-lg-3 col-md-4 col-6">
                         <div class="card shadow mb-4 w-100">
                             <div class="card-body">
-                                <h5 class="card-title mb-3">Total <br>Applications</h5>
+                                <h5 class="card-title mb-3">Viewed <br>Applications</h5>
                                 <h6 class="mb-3">&nbsp;</h6>
                                 <a href="{{route('hr.totalapplications')}}" class="btn custom-btn">Visit</a>
                             </div>

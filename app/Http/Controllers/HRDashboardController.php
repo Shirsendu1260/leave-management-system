@@ -93,4 +93,52 @@ class HRDashboardController extends Controller
 
         return view('hr.pendingapplications', ['pendingapplications' => $pendingapplications]);
     }
+
+    // For accepting an application
+    public function accept($id){
+        $application = DB::table('applications')
+                            ->join('users', 'applications.uid', '=', 'users.id')
+                            ->select('applications.id', 'users.name', 'applications.from', 'applications.to')
+                            ->where('applications.id', '=', $id)
+                            ->first();
+
+        $name = $application->name;
+        $from = $application->from;
+        $to = $application->to;
+
+        if($application){
+            DB::table('applications')
+            ->where('id', $id)
+            ->update(['approved' => 'Yes']);
+
+            return redirect()->route('hr.pendingapplications')->with('yes_msg', "The application of $name from date $from to $to is accepted.");
+        }
+        else{
+            return redirect()->route('hr.pendingapplications')->with('yes_error', 'Unable to accept the application.');
+        }
+    }
+
+    // For rejecting an application
+    public function reject($id){
+        $application = DB::table('applications')
+                            ->join('users', 'applications.uid', '=', 'users.id')
+                            ->select('applications.id', 'users.name', 'applications.from', 'applications.to')
+                            ->where('applications.id', '=', $id)
+                            ->first();
+
+        $name = $application->name;
+        $from = $application->from;
+        $to = $application->to;
+
+        if($application){
+            DB::table('applications')
+            ->where('id', $id)
+            ->update(['approved' => 'No']);
+
+            return redirect()->route('hr.pendingapplications')->with('no_msg', "The application of $name from date $from to $to is rejected.");
+        }
+        else{
+            return redirect()->route('hr.pendingapplications')->with('no_error', 'Unable to reject the application.');
+        }
+    }
 }

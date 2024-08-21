@@ -21,9 +21,4 @@ class Application extends Model
         'approved',
         'uid',
     ];
-
-    // The relation with the User model
-    public function user(){
-        return $this->belongsTo(User::class, 'uid');
-    }
 }

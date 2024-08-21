@@ -46,9 +46,4 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
-
-    // Define the inverse relationship with the Application model
-    public function application(){
-        return $this->hasMany(Application::class, 'uid');
-    }
 }

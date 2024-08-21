@@ -41,7 +41,7 @@
                 </div>
             </div>
         </nav>
-        <div class="container d-flex px-4 px-md-0 px-lg-0 my-5 min-vh-100">
+        <div class="container d-flex justify-content-center px-4 px-md-0 px-lg-0 my-5 min-vh-100">
             <div class="card shadow">
                 <div class="custom-bg rounded-top">
                     <div class="d-flex justify-content-between m-0 p-3 text-white">
