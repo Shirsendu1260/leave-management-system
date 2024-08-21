@@ -41,5 +41,7 @@ Route::group(['prefix' => 'hr'], function(){
         Route::get('/registeremployee', [HRDashboardController::class, 'register'])->name('hr.emregister');
         Route::post('/makeregistration', [HRDashboardController::class, 'makeRegistration'])->name('hr.doemregister');
         Route::get('/totalemployees', [HRDashboardController::class, 'displayEmployees'])->name('hr.totalemployees');
+        Route::get('/totalapplications', [HRDashboardController::class, 'displayTotalApplications'])->name('hr.totalapplications');
+        Route::get('/pendingapplications', [HRDashboardController::class, 'displayPendingApplications'])->name('hr.pendingapplications');
     }); 
 });

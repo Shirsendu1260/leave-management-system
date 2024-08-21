@@ -56,8 +56,8 @@
                         <div class="card shadow mb-4 w-100">
                             <div class="card-body">
                                 <h5 class="card-title mb-3">Pending <br>Applications</h5>
-                                <h6 class="card-subtitle mb-3">&nbsp;</h6>
-                                <a href="" class="btn custom-btn">Visit</a>
+                                <h6 class="mb-3">&nbsp;</h6>
+                                <a href="{{route('hr.pendingapplications')}}" class="btn custom-btn">Visit</a>
                             </div>
                         </div>
                     </div>
@@ -65,8 +65,8 @@
                         <div class="card shadow mb-4 w-100">
                             <div class="card-body">
                                 <h5 class="card-title mb-3">Total <br>Applications</h5>
-                                <h6 class="card-subtitle mb-3">&nbsp;</h6>
-                                <a href="" class="btn custom-btn">Visit</a>
+                                <h6 class="mb-3">&nbsp;</h6>
+                                <a href="{{route('hr.totalapplications')}}" class="btn custom-btn">Visit</a>
                             </div>
                         </div>
                     </div>
@@ -74,7 +74,7 @@
                         <div class="card shadow mb-4 w-100">
                             <div class="card-body">
                                 <h5 class="card-title mb-3">Registered <br>Employees</h5>
-                                <h6 class="card-subtitle mb-3">&nbsp;</h6>
+                                <h6 class="mb-3">&nbsp;</h6>
                                 <a href="{{route('hr.totalemployees')}}" class="btn custom-btn">Visit</a>
                             </div>
                         </div>
@@ -83,7 +83,7 @@
                         <div class="card shadow mb-4 w-100">
                             <div class="card-body">
                                 <h5 class="card-title mb-3">Register <br>An Employee</h5>
-                                <h6 class="card-subtitle mb-3">&nbsp;</h6>
+                                <h6 class="mb-3">&nbsp;</h6>
                                 <a href="{{route('hr.emregister')}}" class="btn custom-btn">Register</a>
                             </div>
                         </div>

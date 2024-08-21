@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Validator;
 
@@ -69,5 +70,27 @@ class HRDashboardController extends Controller
         $employees = User::all();
 
         return view('hr.totalemployees', ['employees' => $employees]);
+    }
+
+    // For displaying total applications
+    public function displayTotalApplications(){
+        $totalapplications = DB::table('applications')
+                            ->join('users', 'applications.uid', '=', 'users.id')
+                            ->select('applications.id', 'applications.uid', 'users.name', 'users.photo', 'users.email', 'users.gender', 'users.dept', 'applications.from', 'applications.to', 'applications.day', 'applications.reason', 'applications.approved')
+                            ->where('applications.approved', '!=', 'Pending')
+                            ->get();
+
+        return view('hr.totalapplications', ['totalapplications' => $totalapplications]);
+    }
+
+    // For displaying total pending applications
+    public function displayPendingApplications(){
+        $pendingapplications = DB::table('applications')
+                            ->join('users', 'applications.uid', '=', 'users.id')
+                            ->select('applications.id', 'applications.uid', 'users.name', 'users.photo', 'users.email', 'users.gender', 'users.dept', 'applications.from', 'applications.to', 'applications.day', 'applications.reason', 'applications.approved')
+                            ->where('applications.approved', '=', 'Pending')
+                            ->get();
+
+        return view('hr.pendingapplications', ['pendingapplications' => $pendingapplications]);
     }
 }
