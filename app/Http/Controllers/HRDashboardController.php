@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\SendMail;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Validator;
 
@@ -98,20 +100,28 @@ class HRDashboardController extends Controller
     public function accept($id){
         $application = DB::table('applications')
                             ->join('users', 'applications.uid', '=', 'users.id')
-                            ->select('applications.id', 'users.name', 'applications.from', 'applications.to')
+                            ->select('applications.id', 'users.name', 'users.email', 'applications.from', 'applications.to')
                             ->where('applications.id', '=', $id)
                             ->first();
+
+        $hr = DB::table('users')->select('email')->where('role', '=', 'HR')->first();
 
         $name = $application->name;
         $from = $application->from;
         $to = $application->to;
+        $fromMail = $hr->email;
+        $toMail = $application->email;
+        $msg = "Your leave application of date $from to $to is ACCEPTED.";
+        $sub = "Your leave is granted";
 
         if($application){
             DB::table('applications')
             ->where('id', $id)
             ->update(['approved' => 'Yes']);
 
-            return redirect()->route('hr.pendingapplications')->with('yes_msg', "The application of $name from date $from to $to is accepted.");
+            Mail::to($toMail)->send(new SendMail($fromMail, $sub, $msg));
+
+            return redirect()->route('hr.pendingapplications')->with('yes_msg', "The application of $name of date $from to $to is accepted.");
         }
         else{
             return redirect()->route('hr.pendingapplications')->with('yes_error', 'Unable to accept the application.');
@@ -122,20 +132,28 @@ class HRDashboardController extends Controller
     public function reject($id){
         $application = DB::table('applications')
                             ->join('users', 'applications.uid', '=', 'users.id')
-                            ->select('applications.id', 'users.name', 'applications.from', 'applications.to')
+                            ->select('applications.id', 'users.name', 'users.email', 'applications.from', 'applications.to')
                             ->where('applications.id', '=', $id)
                             ->first();
+
+        $hr = DB::table('users')->select('email')->where('role', '=', 'HR')->first();
 
         $name = $application->name;
         $from = $application->from;
         $to = $application->to;
+        $fromMail = $hr->email;
+        $toMail = $application->email;
+        $msg = "Your leave application of date $from to $to is REJECTED.";
+        $sub = "Your leave is rejected";
 
         if($application){
             DB::table('applications')
             ->where('id', $id)
             ->update(['approved' => 'No']);
 
-            return redirect()->route('hr.pendingapplications')->with('no_msg', "The application of $name from date $from to $to is rejected.");
+            Mail::to($toMail)->send(new SendMail($fromMail, $sub, $msg));
+
+            return redirect()->route('hr.pendingapplications')->with('no_msg', "The application of $name of date $from to $to is rejected.");
         }
         else{
             return redirect()->route('hr.pendingapplications')->with('no_error', 'Unable to reject the application.');
