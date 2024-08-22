@@ -24,6 +24,8 @@ Route::group(['prefix' => 'account'], function(){
         Route::get('/apply', [DashboardController::class, 'apply'])->name('account.apply');
         Route::post('/submitapplication', [DashboardController::class, 'submitapplication'])->name('hr.submitapplication');
         Route::get('/leavestatuses', [DashboardController::class, 'displayLeaveApplications'])->name('account.leavestatuses');
+        Route::get('/editProfile', [DashboardController::class, 'editProfile'])->name('account.editProfile');
+        Route::post('/updateProfile', [DashboardController::class, 'updateProfile'])->name('account.updateProfile');
     }); 
 });
 

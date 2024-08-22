@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Application;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
@@ -50,5 +51,33 @@ class DashboardController extends Controller
         $applications = Application::where('uid', Auth::user()->id)->get();
 
         return view('employee.leavestatuses', ['applications' => $applications]);
+    }
+
+    // For showing edit profile page
+    public function editProfile(){
+        $employee = User::findOrFail(Auth::user()->id);
+
+        return view('employee.editProfile', ['employee' => $employee]);
+    }
+
+    // For updating details of an employee
+    public function updateProfile(Request $request){
+        $validator = Validator::make($request->all(), [
+            'gender' => 'in:Male,Female',
+        ]);
+
+        if($validator->passes()){
+            $user = User::find(Auth::user()->id);
+            $user->name = $request->name;
+            $user->email = $request->email;
+            $user->gender = $request->gender;
+            $user->address = $request->address;
+            $user->save();
+
+            return redirect()->route('account.dashboard')->with('success', 'Profile updated successfully.');
+        }
+        else{
+            return redirect()->route('account.editProfile')->withErrors($validator)->withInput();
+        }
     }
 }

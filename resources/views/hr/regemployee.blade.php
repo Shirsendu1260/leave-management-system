@@ -58,7 +58,7 @@
                             <div class="mb-3 col-6">
                                 <label class="form-label">Email</label>
                                 <input type="text" class="form-control shadow-none @error('email') is-invalid @enderror" name="email"
-                                    placeholder="email@exmaple.com" value="{{ old('email') }}">
+                                    placeholder="email@example.com" value="{{ old('email') }}">
                                 @error('email')
                                 <p class="invalid-feedback">{{ $message }}</p>
                                 @enderror

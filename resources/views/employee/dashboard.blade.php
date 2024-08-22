@@ -42,6 +42,16 @@
         <div class="container">
             <div class="px-5">
                 <div class="row">
+                    <div class="col-12 d-flex justify-content-center">
+                        @if(Session::has('success'))
+                        <div class="alert alert-success shadow mb-4 w-100">{{Session::get('success')}}</div>
+                        @endif
+                        @if(Session::has('error'))
+                        <div class="alert alert-danger shadow mb-4 w-100">{{Session::get('error')}}</div>
+                        @endif
+                    </div>
+                </div>
+                <div class="row">
                     <div class="col-lg-4 col-md-4 col-12 d-flex justify-content-center">
                         <div class="card shadow mb-4 w-100">
                             <div class="card-body">
@@ -65,7 +75,7 @@
                             <div class="card-body">
                                 <h5 class="card-title mb-3">Edit <br>Profile</h5>
                                 <h6 class="mb-3">&nbsp;</h6>
-                                <a href="" class="btn custom-btn">Edit</a>
+                                <a href="{{route('account.editProfile')}}" class="btn custom-btn">Edit</a>
                             </div>
                         </div>
                     </div>
