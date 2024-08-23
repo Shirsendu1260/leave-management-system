@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 22, 2024 at 06:43 AM
+-- Generation Time: Aug 23, 2024 at 07:35 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -179,6 +179,7 @@ CREATE TABLE `sessions` (
 --
 
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
+('dHfMOM1D2Gc1UT82kkuMDoRRWQvVHlFTEONBFdok', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/127.0.0.0 Safari/537.36', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiVGFoNDlYcmVhZXp5eWd4bmk4WHE4UjRRckg4VXdLS3lPYmo4Qnd4OSI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzU6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9hY2NvdW50L2xvZ2luIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==', 1724433792),
 ('p3hWOuoYrNhYskLS2snkNQ4FYoFNlbZicTK4CHlq', 4, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/127.0.0.0 Safari/537.36', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoiOEtXNWRjYXZxTXVyVU9YcEVpVWIyaHdtckN2OFlWbVpBQ2tlTTFkdyI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6Mzk6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9hY2NvdW50L2Rhc2hib2FyZCI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fXM6NTA6ImxvZ2luX3dlYl81OWJhMzZhZGRjMmIyZjk0MDE1ODBmMDE0YzdmNThlYTRlMzA5ODlkIjtpOjQ7fQ==', 1724301674);
 
 -- --------------------------------------------------------
@@ -193,7 +194,7 @@ CREATE TABLE `users` (
   `email` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
   `remember_token` varchar(100) DEFAULT NULL,
-  `gender` enum('Male','Female') DEFAULT NULL,
+  `gender` enum('Male','Female') NOT NULL,
   `address` varchar(255) DEFAULT NULL,
   `dept` enum('Information Technology','Sales & Marketing','Finance & Accounting','Human Resources') NOT NULL,
   `photo` varchar(255) DEFAULT NULL,
@@ -210,7 +211,7 @@ INSERT INTO `users` (`id`, `name`, `email`, `password`, `remember_token`, `gende
 (1, 'S. Mitra', 'tempcode1260@gmail.com', '$2y$12$oPwFELe7r0cRwzAPUr2HrOrANJGiH2FhKRm0b86GEvdMeBU0R2e6G', NULL, 'Female', 'Kolkata', 'Human Resources', NULL, 'HR', '2024-08-20 17:13:00', NULL),
 (2, 'D. Dey', 'dd@gmail.com', '$2y$12$0lXqmqAxm/MztxKvmSubB.Va1L6QwwTO02ZnoHam0rZOpMIZKUbWy', NULL, 'Female', 'Howrah', 'Finance & Accounting', '20_08_2024_17_21_46.jpeg', 'Employee', '2024-08-20 11:51:46', '2024-08-20 11:51:46'),
 (3, 'R. Roy', 'rr@gmail.com', '$2y$12$iH0HTpUfm8N4xmaqqqSB6.18lfdPj3s7rMGM41fOxoalkY/PQ0Noy', NULL, 'Female', 'Baruipur', 'Finance & Accounting', '20_08_2024_17_22_36.jpeg', 'Employee', '2024-08-20 11:52:36', '2024-08-20 11:52:36'),
-(4, 'A. Das', 'ad@gmail.com', '$2y$12$X5wCCyo3Tr7GXKJLbiQgteR1iN9hudzxwqqGldqqiqcUVZCw.rNZi', NULL, NULL, 'Baharampur', 'Sales & Marketing', '20_08_2024_17_23_23.jpeg', 'Employee', '2024-08-20 11:53:23', '2024-08-21 23:11:14'),
+(4, 'A. Das', 'ad@gmail.com', '$2y$12$X5wCCyo3Tr7GXKJLbiQgteR1iN9hudzxwqqGldqqiqcUVZCw.rNZi', NULL, 'Male', 'Ranaghat', 'Sales & Marketing', '20_08_2024_17_23_23.jpeg', 'Employee', '2024-08-20 11:53:23', '2024-08-23 11:52:33'),
 (5, 'A. Paul', 'ap@gmail.com', '$2y$12$v2SSoxpCfw2Z0g.CvirVK..ZhC3H815FsMLJCAw2YDuBjqMj4Tfx.', NULL, 'Female', 'Dum Dum', 'Sales & Marketing', '20_08_2024_17_24_10.jpeg', 'Employee', '2024-08-20 11:54:10', '2024-08-20 11:54:10'),
 (6, 'S. Sarma', 'ss@gmail.com', '$2y$12$gQomFsi8EngtLQsKppSVxuqxrJJfD3fo2PHmZccXW8rokzgsBZXmS', NULL, 'Female', 'Barrackpur', 'Information Technology', '20_08_2024_17_25_20.jpeg', 'Employee', '2024-08-20 11:55:20', '2024-08-20 11:55:20'),
 (7, 'S. Mali', 'shirsendu1260@gmail.com', '$2y$12$6lXyz001PZL.4ofQc9u.qeGkJlhYEaamJftPFPoVKNCjb0Bg1Xlz2', NULL, 'Male', 'Kolkata', 'Information Technology', '20_08_2024_17_25_56.jpeg', 'Employee', '2024-08-20 11:55:56', '2024-08-20 11:55:56'),
