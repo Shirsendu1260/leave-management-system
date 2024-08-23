@@ -70,7 +70,7 @@ class DashboardController extends Controller
             $user = User::find(Auth::user()->id);
             $user->name = $request->name;
             $user->email = $request->email;
-            $user->gender = $request->gender;
+            $user->gender = $request->has('gender') ? $request->gender : $user->gender;
             $user->address = $request->address;
             $user->save();
 
